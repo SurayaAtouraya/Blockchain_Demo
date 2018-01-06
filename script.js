@@ -7,15 +7,15 @@ class Block
 		this.data = data;
 		this.previousHash = previousHash;
 		this.hash = this.calculateHash();
-    this.nonce = 0;                                                                                                               //Random value used in mining calculation
+    		this.nonce = 0;                                                                                                               //Random value used in mining calculation
 	}
 
-	calculateHash()						                                                                                                      //Uses SHA256 from CryptoJS to generate a hash based on passed string
+	calculateHash()						                                                                              //Uses SHA256 from CryptoJS to generate a hash based on passed string
 	{
   		return CryptoJS.SHA256(this.index + this.previousHash + this.timeStamp + JSON.stringify(this.data) + this.nonce).toString();
 	}
   
-  mineBlock(difficulty)                                                                                                           //Proof of Work implementation to prevent spamming.
+  mineBlock(difficulty)                                                                                                           	     //Proof of Work implementation to prevent spamming.
   {
     while(this.hash.substring(0,difficulty) !== Array(difficulty + 1).join("0"))
       {
@@ -31,7 +31,7 @@ class Blockchain
 	constructor()
 	{
 		this.chain = [this.createGenesisBlock()];
-    this.difficulty=2;                                                                                                            //How many 0's must start in the hash
+    		this.difficulty=2;                                                                                                          //How many 0's must start in the hash
 	}
 
 	createGenesisBlock()
